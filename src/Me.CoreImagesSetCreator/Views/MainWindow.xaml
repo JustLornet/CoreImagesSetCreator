@@ -1,0 +1,33 @@
+﻿<mah:MetroWindow x:Class="Me.CoreImagesSetCreator.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Me.CoreImagesSetCreator"
+        xmlns:prism="http://prismlibrary.com/"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid ShowGridLines="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40px" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40px" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Button Command="{Binding OpenFilesCommand}" ToolTip="Загрузить файлы">
+            <iconPacks:PackIconModern Kind="Upload" />
+        </Button>
+        
+        <ContentControl
+            Grid.Row="1"
+            Grid.Column="1"
+            prism:RegionManager.RegionName="MainCoreImage"
+            />
+    </Grid>
+</mah:MetroWindow>
