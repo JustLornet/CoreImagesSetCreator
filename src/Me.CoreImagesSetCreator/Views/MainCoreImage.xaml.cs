@@ -18,9 +18,9 @@ namespace Me.CoreImagesSetCreator.Views
     /// <summary>
     /// Interaction logic for MainCoreImage.xaml
     /// </summary>
-    public partial class MainCoreImage : MetroContentControl
+    public partial class MainDisplayRegion : MetroContentControl
     {
-        public MainCoreImage()
+        public MainDisplayRegion()
         {
             InitializeComponent();
         }

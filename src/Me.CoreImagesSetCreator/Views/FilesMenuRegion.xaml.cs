@@ -1,5 +1,4 @@
 ﻿using MahApps.Metro.Controls;
-using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,16 +16,13 @@ using System.Windows.Shapes;
 namespace Me.CoreImagesSetCreator.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for FilesMenuRegion.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class FilesMenuRegion : MetroContentControl
     {
-        public MainWindow(IRegionManager regionManager)
+        public FilesMenuRegion()
         {
             InitializeComponent();
-
-            regionManager.RegisterViewWithRegion("MainCoreImage", typeof(MainDisplayRegion));
-            regionManager.RegisterViewWithRegion("FilesMenu", typeof(FilesMenuRegion));
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Me.CoreImagesSetCreator.Domain.FilesReflections.LazyStream;
 
-namespace Me.CoreImagesSetCreator.Infrastructure
+namespace Me.CoreImagesSetCreator.Infrastructure.FilesCopy
 {
     /// <summary>
     /// Интертфейс для пересохранения файлов, чтобы не работать с исходниками
@@ -21,6 +21,6 @@ namespace Me.CoreImagesSetCreator.Infrastructure
         /// <param name="fileType">Типы файлов, которые копируются. На основании этого параметра определеяем куда копировать</param>
         /// <param name="data">Обертка для стрима для дальнейшего чтения файлов. Необходимо самому определять в корне композиции в зависимости от того способа, куда сохраняются файлы</param>
         // data выполнена через out, т.к. по смыслу функция копирования может возвращать только bool, говорящий об успешности операции
-        public void CopyFiles(IEnumerable<FileLocation> filesToSave, DataType fileType, out IList<IStream> data);
+        public void CopyFiles(IEnumerable<FileBaseData> filesToSave, DataType fileType, out IList<IStream> data);
     }
 }

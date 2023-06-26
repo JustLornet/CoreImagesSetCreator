@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Me.CoreImagesSetCreator.Domain.ValueObjects
 {
-    public sealed class FolderLocation
+    public sealed class FolderBaseData
     {
         private string _fullPath = string.Empty;
         private DirectoryInfo _directoryInfo = null!;
 
-        public FolderLocation(string path)
+        public FolderBaseData(string path)
         {
             FullPath = path;
         }

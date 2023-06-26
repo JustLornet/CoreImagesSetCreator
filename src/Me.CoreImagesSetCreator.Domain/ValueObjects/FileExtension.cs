@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Me.CoreImagesSetCreator.Domain.ValueObjects
 {
-    internal class FileExtension
+    public sealed class FileExtension
     {
         private string _extension;
         private bool _isExtensionValid = false;

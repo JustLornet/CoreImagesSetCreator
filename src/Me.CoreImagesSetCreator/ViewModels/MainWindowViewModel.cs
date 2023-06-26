@@ -1,4 +1,6 @@
 ﻿using MahApps.Metro.Controls;
+using Me.CoreImagesSetCreator.Domain.ValueObjects;
+using Me.CoreImagesSetCreator.Infrastructure.FilesChoose;
 using Me.CoreImagesSetCreator.Views;
 using Prism.Commands;
 using Prism.Ioc;
@@ -10,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Me.CoreImagesSetCreator.ViewModels
 {
@@ -17,6 +20,8 @@ namespace Me.CoreImagesSetCreator.ViewModels
     {
         private IRegionManager _regionManager;
         private IDialogService _dialogService;
+
+        private List<FolderContentContainer> _folderContentContainer = new();
 
         public MainWindowViewModel(IRegionManager regionManager, IDialogService dialogService)
         {
@@ -29,9 +34,22 @@ namespace Me.CoreImagesSetCreator.ViewModels
             get => new DelegateCommand<MainWindow>(OpenFilesTypeWindow);
         }
 
-        private void OpenFilesTypeWindow (MainWindow mainWindow)
+        private void OpenFilesTypeWindow(MainWindow mainWindow)
         {
-            _dialogService.ShowDialog("OpeningFilesTypeWindow");
+            _dialogService.ShowDialog("OpeningFilesTypeWindow", SaveDataFromFilesTypeWindow);
+        }
+
+        /// <summary>
+        /// Получение результатов выбор папки пользователем
+        /// </summary>
+        /// <param name="dialogResult"></param>
+        private void SaveDataFromFilesTypeWindow(IDialogResult dialogResult)
+        {
+            if (dialogResult.Result is ButtonResult.OK)
+            {
+                if (dialogResult.Parameters.ContainsKey(nameof(FolderContentContainer)))
+                    _folderContentContainer.Add(dialogResult.Parameters.GetValue<FolderContentContainer>(nameof(FolderContentContainer)));
+            }
         }
     }
 }

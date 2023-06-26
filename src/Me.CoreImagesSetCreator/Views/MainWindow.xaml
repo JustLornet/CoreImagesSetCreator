@@ -9,21 +9,32 @@
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid ShowGridLines="True">
+        Title="MainWindow" Height="800" Width="1000">
+    <Grid ShowGridLines="True" Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="40px" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40px" />
+            <ColumnDefinition Width="200px" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Button Command="{Binding OpenFilesCommand}" ToolTip="Загрузить файлы">
+        <Button
+            Command="{Binding OpenFilesCommand}"
+            ToolTip="Загрузить файлы"
+            Width="30px"
+            Height="30px"
+            >
             <iconPacks:PackIconModern Kind="Upload" />
         </Button>
-        
+
+        <ContentControl
+            Grid.Row="1"
+            Grid.Column="0"
+            prism:RegionManager.RegionName="FilesMenu"
+            />
+
         <ContentControl
             Grid.Row="1"
             Grid.Column="1"

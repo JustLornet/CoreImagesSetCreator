@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls;
+using Me.CoreImagesSetCreator.Infrastructure.FilesMine;
 using Me.CoreImagesSetCreator.ViewModels;
 using Me.CoreImagesSetCreator.Views;
 using Prism.Ioc;
@@ -29,6 +30,8 @@ namespace Me.CoreImagesSetCreator
             containerRegistry.Register<MainWindow>("MainWindow");
             // окно с выбором типа загружаемых файлов
             containerRegistry.RegisterDialog<OpeningFilesTypeWindow, OpeningFilesTypeWindowViewModel>();
+            // сервис для поиска и сохранения (в рамках процесса) данных об анализируемых файлов
+            containerRegistry.Register<IFilesMinerService, SimpleFilesMinerService>();
         }
     }
 }

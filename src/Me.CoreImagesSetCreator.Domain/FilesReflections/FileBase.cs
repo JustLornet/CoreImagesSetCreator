@@ -12,7 +12,6 @@ namespace Me.CoreImagesSetCreator.Domain.FileReflections
     {
         protected readonly Stream _fileData;
         private readonly DataType _fileType;
-        private 
 
         internal FileBase (Stream fileData, DataType fileType)
         {

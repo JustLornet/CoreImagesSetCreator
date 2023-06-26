@@ -2,7 +2,7 @@
 using Me.CoreImagesSetCreator.Domain.Service;
 using Me.CoreImagesSetCreator.Domain.ValueObjects;
 
-namespace Me.CoreImagesSetCreator.Infrastructure
+namespace Me.CoreImagesSetCreator.Infrastructure.FilesCopy
 {
     /// <summary>
     /// Временная реализация для сохранения в папку документы, далее - сделать через бд
@@ -13,7 +13,7 @@ namespace Me.CoreImagesSetCreator.Infrastructure
         /// Сохранение + проверка существования папки с документами и создание её, если есть
         /// </summary>
         /// <param name="filesToSave">Файлы, которые необходимо сохранить</param>
-        public void CopyFiles(IEnumerable<FileLocation> filesToSave, DataType fileType, out IList<IStream> streamCreator)
+        public void CopyFiles(IEnumerable<FileBaseData> filesToSave, DataType fileType, out IList<IStream> streamCreator)
         {
             // TODO: нарушение SRP - перенести проверку и создание папки в отдельную логику
             // папка для сохранения фото в документах
@@ -21,7 +21,7 @@ namespace Me.CoreImagesSetCreator.Infrastructure
 
             streamCreator = new List<IStream>(filesToSave.Count());
 
-            documentFolder = (fileType) switch
+            documentFolder = fileType switch
             {
                 DataType.Image => Path.Combine(documentFolder, "Images"),
                 DataType.Table => Path.Combine(documentFolder, "Reports"),
@@ -39,11 +39,11 @@ namespace Me.CoreImagesSetCreator.Infrastructure
             foreach (var file in filesToSave)
             {
                 // зашиваем путь до файла в имя файла
-                var initPath = (string)file.FullPath.Replace("\\", "--");
-                initPath = (string)initPath.Replace(":", "---");
+                var initPath = file.FileInfo.FullName.Replace("\\", "--");
+                initPath = initPath.Replace(":", "---");
 
                 var destFileName = $"{documentFolder}\\{initPath}";
-                File.Copy(file.FullPath, destFileName, true);
+                File.Copy(file.FileInfo.FullName, destFileName, true);
 
                 //TODO: нарушение SRP - перенести фунцию заполнения
                 streamCreator.Add(new StreamAdapter(() => new FileStream(destFileName, FileMode.Open)));
